@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # 3rd party
-    #'registration',
     'crispy_forms',
 
     # project
