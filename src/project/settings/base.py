@@ -41,6 +41,7 @@ INSTALLED_APPS = (
 
     # 3rd party
     'crispy_forms',
+    'captcha',
 
     # project
     'common',
@@ -156,4 +157,3 @@ def get_env_variable(var_name):
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
-print BASE_DIR

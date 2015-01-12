@@ -82,6 +82,21 @@ class EnhancedRegistrationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EnhancedRegistrationForm, self).__init__(*args, **kwargs)
 
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            'email',
+            'password',
+            'first_name',
+            'subscribe',
+            'captcha',
+
+            FormActions(
+                Submit('save', u'Отправить', css_class='btn-primary'),
+            )
+        )
+
+
     def clean(self):
         if 'password1' in self.cleaned_data.keys() and 'password2' in self.cleaned_data.keys():
             self.cleaned_data['password2'] = self.cleaned_data['password1']
