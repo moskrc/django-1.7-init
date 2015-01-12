@@ -1,0 +1,102 @@
+{% extends "initial.html" %}
+{% load static %}
+
+{% block body %}
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Project name</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <li><a title="Администрирование" href="/admin/">Панель управления</a></li>
+                        {% endif %}
+
+                        <li><a title="Мой профиль" href="{% url 'accounts.views.profile' %}">Личный кабинет</a></li>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        <li><a href="/accounts/logout">Выход</a></li>
+                    {% else %}
+                        <li><a href="/accounts/login">Войти</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert{% if message.tags %} alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
+                    {{ message|safe }}
+                </div>
+            {% endfor %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        {{ siteconfig.settings.footer|safe }}
+                        <a href="#">Обратная связь</a>&nbsp;
+                        |&nbsp;<a href="http://flaskdev.com">Разработка сайта</a>
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    {{ siteconfig.settings.counters|safe }}
+                </div>
+            </div>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="popup_dlg" tabindex="-1" role="dialog" aria-hidden="true" style="display: none">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}
+
+{% block feedback %}
+    {{ siteconfig.settings.feedback_widget|safe }}
+{% endblock %}

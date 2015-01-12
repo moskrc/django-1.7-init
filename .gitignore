@@ -1,0 +1,7 @@
+*.sqlite3
+*.pyc
+*.log
+.idea
+env
+src/media
+src/static

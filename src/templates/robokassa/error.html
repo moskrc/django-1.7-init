@@ -1,0 +1,28 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Платные услуги - ошибка{% endblock %}
+
+{% block right %}
+
+
+    <h1>Платные услуги - оплата не произведена</h1>
+
+    <div class="pay_service">
+
+        <h3 style="color: red">При проведении оплаты возникли ошибки</h3>
+
+
+        <ul style="color: #444;">
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+

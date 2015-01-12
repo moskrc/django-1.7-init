@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+	<h1>Вход</h1>
+	{% crispy form %}
+	Забыли пароль? <a href="{% url 'auth_password_reset' %}" class="reset_password_link">Запросить ссылку для восстановления пароля</a><br/>
+{% endblock %}

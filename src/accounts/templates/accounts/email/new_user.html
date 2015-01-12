@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+<h1>Зарегистрировался новый пользователь</h1>
+
+<p><strong>Отправлено:</strong> {{sended|date:"d.m.y H:i:s"}}</p>
+
+<h2>Контактная информация</h2>
+<table border="1" cellpadding="5" cellspacing="0" width="600px;">
+<tr><td>Имя:</td><td>{{profile.name}}</td></tr>
+<tr><td>Email:</td><td><a href="mailto:{{profile.email}}">{{profile.email}}</a></td></tr>
+<tr><td>Подписка на новости:</td><td>{{profile.subscribe|yesno:"Да,Нет"}}</td></tr>
+<tr><td>ICQ:</td><td>{{profile.icq|default:"-"}}</td></tr>
+<tr><td>Телефон:</td><td>{{profile.telephone|default:"-"}}</td></tr>
+</table>
+
+</body>
+</html>

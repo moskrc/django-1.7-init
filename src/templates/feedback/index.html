@@ -1,0 +1,26 @@
+{% extends "2_column.html" %}
+{% load notice_tags %}
+{% load bootstrap3 %}
+
+{% block title %}Форма обратной связи {% endblock %}
+
+{% block left %}
+{% include "notices/elements/left_block.html" %}
+{% endblock %}
+
+{% block right %}
+
+	{% header_line 'Форма обратной связи' %}
+
+	{% if success %}
+		<h2 class="green">Сообщение успешно отправлено</h2>
+		<a href="/">Перейти на главную страницу</a>
+	{% else %}
+		<form method="post">{% csrf_token %}
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			{% bootstrap_button 'Отправить' button_type='submit' %}
+		</form>
+	{% endif %}
+
+{% endblock %}
